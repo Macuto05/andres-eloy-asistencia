@@ -65,7 +65,7 @@ export default function LoginPage() {
                             type="text"
                             placeholder="Ingrese su usuario"
                             required
-                            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent text-sm placeholder-gray-400"
+                            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent text-sm placeholder-gray-400 text-gray-900"
                         />
                     </div>
 
@@ -81,7 +81,7 @@ export default function LoginPage() {
                                 type={showPassword ? "text" : "password"}
                                 placeholder="Ingrese su contraseña"
                                 required
-                                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent text-sm placeholder-gray-400"
+                                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent text-sm placeholder-gray-400 text-gray-900"
                             />
                             {/* BOTÓN DEL OJO */}
                             <button
