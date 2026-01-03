@@ -1,5 +1,5 @@
-import { DiasHabiles } from '../../domain/entities/DiasHabiles';
-import { DiasHabilesRepository } from '../../domain/repositories/DiasHabilesRepository';
+import { DiasHabiles } from '../../../domain/entities/DiasHabiles';
+import { DiasHabilesRepository } from '../../../domain/repositories/DiasHabilesRepository';
 
 export class GetDiasHabiles {
     constructor(private diasRepository: DiasHabilesRepository) { }
