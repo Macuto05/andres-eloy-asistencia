@@ -1,0 +1,109 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// =========================================================
+// 1. CONFIGURACIÓN DEL COLEGIO (Lo que define la profe)
+// =========================================================
+
+// Configuración de Matrícula (Estudiantes)
+// Ejemplo: "En 1er Grado hay 3 secciones, 15 varones y 18 hembras (por sección promedio o total? Asumiré total según diseño)"
+model MatriculaConfig {
+  id              Int      @id @default(autoincrement())
+  nivel           String   // "Inicial", "Primaria", "Media General"
+  grado           String   // "Maternal", "1er Grado", "1er Año"
+  cantidadSecciones Int    @default(1) // "Hay 3 secciones de 1er Grado"
+  
+  cantidadVarones Int      @default(0)
+  cantidadHembras Int      @default(0)
+
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+}
+
+// Configuración de Personal (Docentes, Obreros...)
+model PersonalConfig {
+  id              Int      @id @default(autoincrement())
+  tipo            String   // "Docente", "Administrativo", "Obrero", "MadrePatria"
+  nivel           String   // "Inicial", "Primaria" 
+  
+  cantidadVarones Int      @default(0)
+  cantidadHembras Int      @default(0)
+  
+  updatedAt       DateTime @updatedAt
+}
+
+// Configuración de Días Hábiles
+model DiasHabiles {
+  id        Int      @id @default(autoincrement())
+  mes       String   @unique // "Septiembre", "Octubre"... (Unique para que no se repitan)
+  cantidad  Int      // 20
+}
+
+// =========================================================
+// 2. REGISTRO DIARIO (La acción)
+// =========================================================
+
+// Inasistencia: Solo guardamos cuando alguien FALTA.
+model Inasistencia {
+  id            Int      @id @default(autoincrement())
+  fecha         DateTime // Cuándo faltó (Día exacto)
+  mes           String   // "Enero", "Febrero"
+  
+  // ¿Quién faltó?
+  nombre        String   
+  apellido      String   
+  // cedula eliminada por solicitud
+  
+  cargo         String   // "Madre de la patria", "Docente"... (Antes tipoPersona)
+  nivel         String   // "Primaria"
+  grado         String?  // "1er Grado" (Solo estudiantes)
+  seccion       String?  
+  // genero eliminado
+
+  justificada   Boolean  @default(false)
+  justificacion String?  // Antes observacion. Solo si justificada = true
+
+  createdAt     DateTime @default(now())
+}
+
+// =========================================================
+// 3. SISTEMA
+// =========================================================
+
+model Usuario {
+  id        Int      @id @default(autoincrement())
+  username  String   @unique // "AndresEloy2025"
+  password  String   
+  nombre    String?  // Nombre completo para mostrar en el saludo
+}
+
+// =========================================================
+// 4. REGISTRO MENSUAL (Madres, Docentes, etc.)
+// =========================================================
+
+model RegistroMensual {
+  id              Int      @id @default(autoincrement())
+  
+  mes             String   // "Enero", "Febrero"...
+  // anio eliminado por solicitud de diseño cíclico
+  
+  tipoPersonal    String   // "Madre de la patria", "Docente", etc.
+  nivel           String   // "Primaria", "Inicial"...
+  
+  // Datos guardados
+  asistenciaMensual Int    @default(0) // El valor que escribe la encargada
+  
+  // Opcional: Podríamos guardar snapshots de los cálculos si se desea historico estático,
+  // pero por ahora calcularemos al vuelo en base a la Asistencia guardada.
+  
+  updatedAt       DateTime @updatedAt
+  
+  // CLAVE ÚNICA COMPUESTA: Evita duplicados para el mismo registro
+  @@unique([mes, tipoPersonal, nivel], name: "registro_unico_mensual")
+}
