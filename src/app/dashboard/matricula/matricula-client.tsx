@@ -210,6 +210,7 @@ export default function MatriculaClient({ matriculaData, diasHabiles, registros 
                 onClose={() => setIsAddModalOpen(false)}
                 grado={selectedGrado}
                 seccionGroup={selectedSeccionGroup}
+                nivel={selectedSeccionGroup}
                 mes={selectedMonth}
                 cargo="Estudiante"
             />
