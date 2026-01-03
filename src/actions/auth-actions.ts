@@ -7,6 +7,7 @@ import { PrismaClient } from '@prisma/client'
 // En Server Actions simples, redirect suele lanzar un error NEXT_REDIRECT que interrumpe el flujo, así que hay que tener cuidado.
 import { redirect } from 'next/navigation'
 import { cookies } from 'next/headers'
+import { compare } from 'bcryptjs'
 
 const prisma = new PrismaClient()
 
@@ -31,8 +32,14 @@ export async function loginAction(formData: FormData) {
             where: { username: usuarioStr }
         })
 
-        // 3. Verificar si existe y si la contraseña coincide
-        if (!userFound || userFound.password !== passwordStr) {
+        // 3. Verificar si existe y si la contraseña coincide (usando bcrypt)
+        if (!userFound) {
+            return { success: false, message: 'Usuario o contraseña incorrectos' }
+        }
+
+        const passwordMatch = await compare(passwordStr, userFound.password)
+
+        if (!passwordMatch) {
             console.log('❌ Credenciales incorrectas')
             return { success: false, message: 'Usuario o contraseña incorrectos' }
         }
