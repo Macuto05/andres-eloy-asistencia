@@ -1,4 +1,5 @@
 import { UserRepository } from '../../../domain/repositories/UserRepository';
+import { hash } from 'bcryptjs';
 
 interface ExecuteParams {
     currentUsername: string;
@@ -21,7 +22,7 @@ export class UpdateUserCredentials {
 
         // Solo actualizar contraseña si el usuario escribió algo
         if (newPassword && newPassword.trim() !== '') {
-            dataToUpdate.password = newPassword;
+            dataToUpdate.password = await hash(newPassword, 12);
         }
 
         // 3. Ejecutar actualización
