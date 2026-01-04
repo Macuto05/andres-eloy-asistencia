@@ -97,7 +97,7 @@ export default function ViewInasistenciasModal({ isOpen, onClose, nivel, mes, ca
                                     {registros.map((r) => (
                                         <tr key={r.id} className="hover:bg-gray-50 transition-colors">
                                             <td className="px-4 py-3 font-medium text-gray-800 whitespace-nowrap">
-                                                {new Date(r.fecha).toLocaleDateString('es-ES', { day: '2-digit', month: '2-digit', year: 'numeric' })}
+                                                {new Date(r.fecha).toLocaleDateString('es-ES', { day: '2-digit', month: '2-digit', year: 'numeric', timeZone: 'UTC' })}
                                             </td>
                                             <td className="px-4 py-3 text-gray-700">
                                                 {r.nombre} {r.apellido}
