@@ -11,9 +11,13 @@ export default function LoginPage() {
     const [loading, setLoading] = useState(false)
 
     // Función que maneja el envío del formulario
-    async function handleSubmit(formData: FormData) {
+    // Función que maneja el envío del formulario
+    async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+        e.preventDefault()
         setLoading(true)
         setError('') // Limpiar errores previos
+
+        const formData = new FormData(e.currentTarget)
 
         // Llamamos a la Server Action (el portero)
         const result = await loginAction(formData)
@@ -53,7 +57,7 @@ export default function LoginPage() {
                 )}
 
                 {/* FORMULARIO */}
-                <form action={handleSubmit} className="space-y-4">
+                <form onSubmit={handleSubmit} className="space-y-4">
 
                     {/* CAMPO USUARIO */}
                     <div>
