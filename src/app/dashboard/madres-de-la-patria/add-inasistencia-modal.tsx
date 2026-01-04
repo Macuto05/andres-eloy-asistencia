@@ -113,7 +113,7 @@ export default function AddInasistenciaModal({ isOpen, onClose, nivel, mes, carg
                                 required
                                 value={nombre}
                                 onChange={e => setNombre(e.target.value)}
-                                className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-blue-500 outline-none transition-all"
+                                className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-blue-500 outline-none transition-all text-gray-900"
                                 placeholder="Nombre"
                             />
                         </div>
@@ -124,7 +124,7 @@ export default function AddInasistenciaModal({ isOpen, onClose, nivel, mes, carg
                                 required
                                 value={apellido}
                                 onChange={e => setApellido(e.target.value)}
-                                className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-blue-500 outline-none transition-all"
+                                className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-blue-500 outline-none transition-all text-gray-900"
                                 placeholder="Apellido"
                             />
                         </div>
@@ -147,7 +147,7 @@ export default function AddInasistenciaModal({ isOpen, onClose, nivel, mes, carg
                         <select
                             value={tipoInasistencia}
                             onChange={(e) => setTipoInasistencia(e.target.value as "dia" | "periodo")}
-                            className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-blue-500 outline-none transition-all bg-white"
+                            className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-blue-500 outline-none transition-all bg-white text-gray-900"
                         >
                             <option value="dia">Crear inasistencia para 1 día</option>
                             <option value="periodo">Crear inasistencia por periodo</option>
@@ -164,7 +164,7 @@ export default function AddInasistenciaModal({ isOpen, onClose, nivel, mes, carg
                             required
                             value={fechaInicio}
                             onChange={e => setFechaInicio(e.target.value)}
-                            className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-blue-500 outline-none transition-all"
+                            className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-blue-500 outline-none transition-all text-gray-900"
                         />
                     </div>
 
@@ -177,7 +177,7 @@ export default function AddInasistenciaModal({ isOpen, onClose, nivel, mes, carg
                                 value={fechaFin}
                                 min={fechaInicio}
                                 onChange={e => setFechaFin(e.target.value)}
-                                className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-blue-500 outline-none transition-all"
+                                className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-blue-500 outline-none transition-all text-gray-900"
                             />
                             <p className="text-[10px] text-gray-400">Se registrarán inasistencias desde la fecha de inicio hasta el día anterior al reintegro.</p>
                         </div>
@@ -204,7 +204,7 @@ export default function AddInasistenciaModal({ isOpen, onClose, nivel, mes, carg
                                     rows={3}
                                     required={justificada}
                                     placeholder="Indique el motivo..."
-                                    className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-blue-500 outline-none transition-all resize-none"
+                                    className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-blue-500 outline-none transition-all resize-none text-gray-900"
                                 />
                             </div>
                         )}
