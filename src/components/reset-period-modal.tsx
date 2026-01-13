@@ -66,7 +66,7 @@ export default function ResetPeriodModal({ isOpen, onClose }: ResetPeriodModalPr
                             required
                             value={confirmText}
                             onChange={(e) => setConfirmText(e.target.value.toUpperCase())}
-                            className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-red-500 outline-none placeholder:uppercase"
+                            className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-red-500 outline-none placeholder:uppercase text-gray-900"
                             placeholder="REINICIAR"
                         />
                     </div>
